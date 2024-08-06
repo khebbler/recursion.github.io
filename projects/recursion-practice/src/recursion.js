@@ -52,11 +52,16 @@ var arraySum = function(array) {
 // slide 22 recursion
 // 4. Check if a number is even.
 var isEven = function(n) {
-  if (n === 1) {
-    return false;
-  } else if (n === 0) {
+  n = Math.abs(n);
+  // BASE
+  if (n === 0) {
     return true;
   }
+  if (n === 1) {
+    return false;
+  }
+  // RECURSION
+  return isEven(n - 2);
 };
 
 
@@ -65,7 +70,23 @@ var isEven = function(n) {
 // sumBelow(10); // 45
 // sumBelow(7); // 21
 var sumBelow = function(n) {
+  // BASE CASE
+  // if n === 0
+  if (n === 0) {
+    return 0;
+  }
+  // RECURSION
+  // if n is positive
+  if (n > 0) {
+    // adding (n - 1) to result of sumBelow
+    return (n - 1) + sumBelow(n - 1);
+  // if n is negative
+  } else {
+    // adding (n + 1) to result of sumBelow
+    return (n + 1) + sumBelow(n + 1);
+  }
 };
+
 
 // 6. Get the integers in range (x, y).
 // Example:  range(2, 9);  // [3, 4, 5, 6, 7, 8]
